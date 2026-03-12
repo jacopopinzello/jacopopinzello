@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jacopo Pinzello — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0c0b;
+    --surface: #141412;
+    --border: #242420;
+    --text: #e8e6df;
+    --muted: #7a7870;
+    --accent: #c8a96e;
+    --accent-dim: rgba(200,169,110,0.12);
+    --accent-glow: rgba(200,169,110,0.06);
+    --red: #c46a4a;
+    --white: #f2f0ea;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NOISE TEXTURE */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.4;
+  }
+
+  /* LAYOUT */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 24px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid transparent;
+    transition: all 0.4s ease;
+    background: transparent;
+  }
+
+  nav.scrolled {
+    background: rgba(12,12,11,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom-color: var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .nav-logo span {
+    color: var(--accent);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 40px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(200,169,110,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,169,110,0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
+  }
+
+  .hero-line {
+    position: absolute;
+    top: 0;
+    right: 240px;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--border) 30%, var(--border) 70%, transparent);
+    opacity: 0.5;
+  }
+
+  .hero-number {
+    position: absolute;
+    top: 50%;
+    right: 40px;
+    transform: translateY(-50%) rotate(90deg);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    opacity: 0.4;
+    white-space: nowrap;
+  }
+
+  .hero-content {
+    max-width: 900px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(56px, 8vw, 108px);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .hero-subtitle span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-subtitle span::before {
+    content: '○';
+    color: var(--accent);
+    font-size: 8px;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 100px 0;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 64px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--white);
+    letter-spacing: -0.01em;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-left: auto;
+  }
+
+  /* INTRO */
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .intro-text p {
+    font-size: 17px;
+    line-height: 1.75;
+    color: #b5b3ac;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+
+  .intro-text p strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .intro-skills {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .skill-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+
+  .skill-row:first-child { border-top: 1px solid var(--border); }
+
+  .skill-row:hover {
+    padding-left: 12px;
+  }
+
+  .skill-name {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--text);
+  }
+
+  .skill-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    background: var(--accent-dim);
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  /* PROJECTS */
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid transparent;
+    padding: 32px 36px;
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 32px;
+    align-items: start;
+    transition: all 0.3s ease;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-glow);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+
+  .project-card:hover {
+    border-left-color: var(--accent);
+    transform: translateX(4px);
+  }
+
+  .project-card:hover::before {
+    opacity: 1;
+  }
+
+  .project-card.featured {
+    border-left-color: var(--accent);
+    background: linear-gradient(135deg, #161512, var(--surface));
+  }
+
+  .project-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    padding-top: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  .project-main {}
+
+  .project-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .project-director {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 12px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .project-role {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text);
+    background: var(--border);
+    padding: 4px 10px;
+    margin-bottom: 12px;
+  }
+
+  .project-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 540px;
+  }
+
+  .project-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    min-width: 160px;
+  }
+
+  .project-format {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    order: -1;
+    margin-bottom: 4px;
+  }
+
+  .badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    padding: 5px 10px;
+    border-radius: 2px;
+    text-align: right;
+    line-height: 1.4;
+    background: rgba(200,169,110,0.15);
+    color: var(--accent);
+    border: 1px solid rgba(200,169,110,0.3);
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  a.badge:hover {
+    background: rgba(200,169,110,0.28);
+    color: var(--white);
+  }
+
+  a.badge, .project-link {
+    position: relative;
+    z-index: 2;
+  }
+
+  .badge-gold { }
+  .badge-white { }
+  .badge-red { }
+
+
+
+  /* LINKS a progetti */
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    margin-top: 10px;
+    transition: color 0.2s;
+  }
+
+  .project-link:hover { color: var(--accent); }
+  .project-link::after { content: ' →'; }
+
+  /* CONTACTS */
+  .contact-section {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    padding: 80px 0;
+  }
+
+  .contact-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    color: var(--white);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .contact-headline em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .contact-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .contact-value {
+    font-size: 15px;
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .contact-link {
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-link:hover {
+    color: var(--accent);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 0;
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-copy {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  /* ANIMATE IN */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+    margin: 0;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); }
+
+  @media (max-width: 768px) {
+    .container { padding: 0 24px; }
+    nav { padding: 20px 24px; }
+    .hero { padding: 0 24px 60px; }
+    .intro-grid { grid-template-columns: 1fr; gap: 48px; }
+    .project-card {
+      grid-template-columns: 48px 1fr;
+      gap: 16px;
+    }
+    .project-meta {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 6px;
+      min-width: unset;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+      margin-top: 4px;
+    }
+    .project-format {
+      order: -1;
+      width: 100%;
+      text-align: left;
+      margin-bottom: 4px;
+    }
+    .badge {
+      text-align: left;
+      font-size: 9px;
+    }
+    .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+    .nav-links { display: none; }
+  }
+
+  /* LANG SWITCHER */
+  .lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+  }
+
+  .lang-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 2px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    transition: color 0.2s, background 0.2s;
+    text-transform: uppercase;
+  }
+
+  .lang-btn.active {
+    color: var(--accent);
+    background: var(--accent-dim);
+  }
+
+  .lang-btn:hover:not(.active) {
+    color: var(--text);
+  }
+
+  .lang-sep {
+    color: var(--border);
+    font-size: 10px;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">JP<span>·</span>Portfolio</div>
+  <ul class="nav-links">
+    <li><a href="#about" data-it="Profilo" data-en="About">Profilo</a></li>
+    <li><a href="#projects" data-it="Progetti" data-en="Projects">Progetti</a></li>
+    <li><a href="#contact" data-it="Contatti" data-en="Contact">Contatti</a></li>
+  </ul>
+  <div class="lang-switcher">
+    <button class="lang-btn active" id="btn-it" onclick="setLang('it')">IT</button>
+    <span class="lang-sep">|</span>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-line"></div>
+  <div class="hero-number">Video · Sound · Production — Roma, 2026</div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Video Editor &amp; Operatore di Presa Diretta</div>
+    <h1 class="hero-title">
+      Jacopo<br><em>Pinzello</em>
+    </h1>
+    <div class="hero-subtitle">
+      <span>Roma</span>
+      <span>Cinema &amp; Documentario</span>
+      <span>Suono · Montaggio · Produzione</span>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Profilo</h2>
+      <span class="section-label">Chi sono</span>
+    </div>
+    <div class="intro-grid">
+      <div class="intro-text fade-up">
+        <p>
+          Lavoro nella produzione video da diversi anni, intrecciando <strong>immagine, suono e racconto</strong>. Il mio percorso si è sviluppato nel cinema indipendente e nel documentario — contesti in cui ho imparato a lavorare con metodo su materiali eterogenei, a rispettare i ritmi editoriali e a costruire contenuti pensati per chi li guarderà.
+        </p>
+        <p>
+          Ho ricoperto ruoli distinti lungo tutta la filiera: fonico di presa diretta, assistente al montaggio, ricercatore d'archivio, assistente di produzione. Su ogni set porto lo stesso approccio — la convinzione che la tecnica serva la storia, e che una storia vada capita prima di essere raccontata.
+        </p>
+        <p>
+          Nel 2023 ho lavorato con <strong>Box to Box Films</strong> — la casa produttrice di <em>Formula 1: Drive to Survive</em> — durante le riprese romane di <em>Break Point</em> per Netflix. Un'esperienza che mi ha messo a contatto diretto con i ritmi del documentario sportivo internazionale.
+        </p>
+      </div>
+      <div class="intro-skills fade-up">
+        <div class="skill-row">
+          <span class="skill-name">Fonico di Presa Diretta</span>
+          <span class="skill-tag">Core</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Montaggio Video</span>
+          <span class="skill-tag">Core</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Assistente di Produzione</span>
+          <span class="skill-tag">Produzione</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Ricerca d'Archivio</span>
+          <span class="skill-tag">Post</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Acquisizione Diritti Musicali</span>
+          <span class="skill-tag">Post</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Cortometraggio · Documentario · Serie</span>
+          <span class="skill-tag">Formati</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Progetti</h2>
+      <span class="section-label">2023 – 2025</span>
+    </div>
+
+    <div class="projects-list">
+
+      <!-- David di Donatello -->
+      <div class="project-card featured fade-up">
+        <div class="project-year">2025</div>
+        <div class="project-main">
+          <div class="project-role">Fonico di Presa Diretta</div>
+          <h3 class="project-title">Il suo nome è Autunno</h3>
+          <div class="project-director">Regia di Talita Ghivelder · Italia / Francia · Cortometraggio · 15'</div>
+          <p class="project-desc">
+            Coproduzione italo-francese: il sedicesimo compleanno di Alice, in una casa di campagna. La voce adulta, anni dopo, rivela un'inquietudine silenziosa che attraversa le donne sedute a quella tavola. Selezionato in concorso nella sezione Cortometraggi dei David di Donatello 2026.
+          </p>
+          <a class="project-link" href="https://www.youtube.com/watch?v=-7EQNRuNxjQ" target="_blank">Guarda su YouTube</a>
+        </div>
+        <div class="project-meta">
+          <a class="badge" href="https://www.daviddidonatello.it/concorso/scheda/16810" target="_blank">David di Donatello 2026<br>In concorso</a>
+          <span class="project-format">Cortometraggio</span>
+        </div>
+      </div>
+
+      <!-- Lo so -->
+      <div class="project-card fade-up">
+        <div class="project-year">2025</div>
+        <div class="project-main">
+          <div class="project-role">Fonico di Presa Diretta</div>
+          <h3 class="project-title">Lo so</h3>
+          <div class="project-director">Regia di Alessandra Mangia · Italia · Cortometraggio · 20'</div>
+          <p class="project-desc">
+            Produzione pugliese selezionata nell'ambito di InFocus: Puglia, la partnership triennale tra Apulia Film Commission e NewFilmmakers Los Angeles. Presentato al Monthly Film Festival di Los Angeles nell'aprile 2026 e citato nella copertura ufficiale su Variety.
+          </p>
+          <a class="project-link" href="https://www.youtube.com/watch?v=Zn4LCy01C5k" target="_blank">Guarda su YouTube</a>
+        </div>
+        <div class="project-meta">
+          <a class="badge" href="https://variety.com/2026/film/global/newfilmmakers-la-expands-partnership-apulia-film-commission-1236683331/" target="_blank">NewFilmmakers<br>Los Angeles 2026</a>
+          <a class="badge" href="https://www.apuliafilmcommission.it/torna-infocus-puglia-la-sezione-del-nfmla-monthly-film-festival-dedicata-ai-cortometraggi-pugliesi/" target="_blank">Apulia<br>Film Commission</a>
+          <span class="project-format">Cortometraggio</span>
+        </div>
+      </div>
+
+      <!-- Cinque Giorni -->
+      <div class="project-card fade-up">
+        <div class="project-year">2024</div>
+        <div class="project-main">
+          <div class="project-role">Fonico di Presa Diretta</div>
+          <h3 class="project-title">Cinque Giorni</h3>
+          <div class="project-director">Regia di Juan Diego Puerta Lopez · Italia · Cortometraggio · 11'</div>
+          <p class="project-desc">
+            Prodotto nell'ambito del Pigneto Film Festival, dove ha vinto più premi. Selezionato nella sezione Onde Corte di Alice nella Città, all'interno della Festa del Cinema di Roma 2024. Copertura editoriale su Taxidrivers, Il Messaggero e RomaToday.
+          </p>
+          <a class="project-link" href="https://www.youtube.com/watch?v=FC06JPEpq64" target="_blank">Guarda su YouTube</a>
+        </div>
+        <div class="project-meta">
+          <a class="badge" href="https://www.ilmessaggero.it/roma/eventi/alice_nella_citta_cinque_giorni_juan_diego_puerta_lopez-8416702.html" target="_blank">Pigneto Film Festival<br>Vincitore</a>
+          <a class="badge" href="https://www.romatoday.it/eventi/festa-cinema-roma/cinque-giorni-il-corto-di-juan-diego-puerta-lopez.html" target="_blank">Alice nella Città<br>Festa del Cinema di Roma</a>
+          <span class="project-format">Cortometraggio</span>
+        </div>
+      </div>
+
+      <!-- Griffith -->
+      <div class="project-card fade-up">
+        <div class="project-year">2024–25</div>
+        <div class="project-main">
+          <div class="project-role">Fonico di Presa Diretta · Microfonista</div>
+          <h3 class="project-title">Cortometraggi Accademici</h3>
+          <div class="project-director">Accademia Griffith di Cinema e Televisione · Italia · 11 cortometraggi</div>
+          <p class="project-desc">
+            Collaborazione continuativa con l'Accademia Griffith di Cinema e Televisione: 11 cortometraggi realizzati con i corsisti nell'ambito del loro percorso di studi. Fonico di presa diretta e microfonista su tutti i set, a supporto della formazione pratica degli studenti.
+          </p>
+        </div>
+        <div class="project-meta">
+          <span class="badge">+11 Produzioni</span>
+          <span class="project-format">Cortometraggi Accademici</span>
+        </div>
+      </div>
+
+      <!-- Break Point Netflix -->
+      <div class="project-card fade-up">
+        <div class="project-year">2023</div>
+        <div class="project-main">
+          <div class="project-role">Assistente di Produzione</div>
+          <h3 class="project-title">Break Point — Stagione 2</h3>
+          <div class="project-director">Box to Box Films · Netflix · Serie documentaristica · Roma</div>
+          <p class="project-desc">
+            Collaborazione con il team di riprese di Box to Box Films — produttori di Formula 1: Drive to Survive — durante le riprese romane della seconda stagione. La serie segue i più forti tennisti al mondo attraverso Grand Slam e tornei ATP e WTA.
+          </p>
+          <a class="project-link" href="https://www.youtube.com/watch?v=LgAzWv_Y0Zs" target="_blank">Guarda il trailer su YouTube</a>
+        </div>
+        <div class="project-meta">
+          <a class="badge" href="https://www.netflix.com/it/title/81569920" target="_blank">Netflix Original</a>
+          <a class="badge" href="https://www.boxtoboxfilms.com/productions/breakpoint/" target="_blank">Box to Box Films</a>
+          <span class="project-format">Serie Televisiva</span>
+        </div>
+      </div>
+
+      <!-- Guercino -->
+      <div class="project-card fade-up">
+        <div class="project-year">2023</div>
+        <div class="project-main">
+          <div class="project-role">Responsabile Ricerca d'Archivio</div>
+          <h3 class="project-title">Guercino. Uno su Cento</h3>
+          <div class="project-director">Regia di Giulia Giapponesi · Codalunga · Italia · Documentario · 65'</div>
+          <p class="project-desc">
+            Arte e vita del pittore seicentesco Giovanni Francesco Barbieri, dal suo paese natale Cento fino a un viaggio straordinario in Giappone. Responsabile della ricerca e selezione del materiale d'archivio. Premio come miglior film storico al Fine Arts Film Festival di Venice, California.
+          </p>
+          <a class="project-link" href="https://cinema.emiliaromagnacultura.it/it/produzione/guercino-uno-cento/" target="_blank">Scheda produzione</a>
+        </div>
+        <div class="project-meta">
+          <a class="badge" href="https://www.imdb.com/it/title/tt30518035/awards/?ref_=tt_awd" target="_blank">Fine Arts Film Festival<br>Venice, California<br>Miglior Film Storico</a>
+          <span class="project-format">Documentario</span>
+        </div>
+      </div>
+
+      <!-- Quel dolore -->
+      <div class="project-card fade-up">
+        <div class="project-year">2023</div>
+        <div class="project-main">
+          <div class="project-role">Assistente al Montaggio</div>
+          <h3 class="project-title">Quel dolore non è immobile</h3>
+          <div class="project-director">Regia di Giulia Giapponesi · Codalunga / Assemblea Legislativa E-R · Italia · Documentario</div>
+          <p class="project-desc">
+            La strage alla stazione di Bologna del 2 agosto 1980 raccontata attraverso 85 volontari che hanno completato i viaggi delle vittime. Proiettato in Piazza Maggiore a Bologna il 1° agosto 2023, disponibile su RaiPlay e YouTube. Secondo lavoro con la regista Giulia Giapponesi.
+          </p>
+          <a class="project-link" href="https://www.youtube.com/watch?v=-7EQNRuNxjQ" target="_blank">Guarda su YouTube</a>
+        </div>
+        <div class="project-meta">
+          <a class="badge" href="https://www.rai.it/ufficiostampa/assets/template/us-articolo.html?ssiPath=/articoli/2024/08/Quel-dolore-non-e-immobile-8a23e78d-2317-470d-b308-b8014227c118-ssi.html" target="_blank">Proiettato in<br>Piazza Maggiore, Bologna</a>
+          <a class="badge" href="https://cinema.emiliaromagnacultura.it/it/news/quel-dolore-non-immobile-85-viaggi-completare-giulia-giapponesi/" target="_blank">Regione<br>Emilia-Romagna</a>
+          <span class="project-format">Documentario</span>
+        </div>
+      </div>
+
+      <!-- Le Biblioteche -->
+      <div class="project-card fade-up">
+        <div class="project-year">2023</div>
+        <div class="project-main">
+          <div class="project-role">Acquisizione Diritti Musicali</div>
+          <h3 class="project-title">Le Biblioteche e la Città. Conoscere per essere liberi</h3>
+          <div class="project-director">Regia di Dario Zanasi e Francesca Zerbetto · Maxman Coop · Italia · Documentario · 87'</div>
+          <p class="project-desc">
+            Documentario prodotto da Maxman Coop sul ruolo delle biblioteche nella città contemporanea. Responsabile dell'acquisizione dei diritti musicali per la colonna sonora, con coordinamento tra la produzione, gli autori e le collecting societies.
+          </p>
+          <a class="project-link" href="https://vimeo.com/1050213198" target="_blank">Guarda su Vimeo</a>
+        </div>
+        <div class="project-meta">
+          <a class="badge" href="https://www.bibliotechebologna.it/documents/biblioteche-citta-conoscere-per-essere-liberi" target="_blank">Biografilm<br>Festival</a>
+          <a class="badge" href="https://cinema.emiliaromagnacultura.it/it/produzione/liber-paradisus-conoscere-liberi/" target="_blank">Produzione<br>Istituzionale</a>
+          <span class="project-format">Documentario</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="fade-up">
+        <h2 class="contact-headline">
+          Disponibile a<br><em>nuove collaborazioni</em>
+        </h2>
+      </div>
+      <div class="contact-details fade-up">
+        <div class="contact-item">
+          <span class="contact-label">Città</span>
+          <span class="contact-value">Roma, Italia</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Email</span>
+          <a class="contact-value contact-link" href="mailto:jacopogiovanni.pinzello@gmail.com">jacopogiovanni.pinzello@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Telefono</span>
+          <a class="contact-value contact-link" href="tel:+393278523563">+39 327 852 3563</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span class="footer-copy">© 2026 Jacopo Pinzello</span>
+      <span class="footer-copy">Roma · Cinema · Documentario</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // NAV scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Fade up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80 * (entry.target.dataset.delay || 0));
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach((el, i) => {
+    el.dataset.delay = i % 4;
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
