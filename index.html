@@ -19,11 +19,11 @@
     --red: #c46a4a;
     --white: #f2f0ea;
   }
-
+ 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
   html { scroll-behavior: smooth; }
-
+ 
   body {
     background: var(--bg);
     color: var(--text);
@@ -32,7 +32,7 @@
     line-height: 1.6;
     overflow-x: hidden;
   }
-
+ 
   /* NOISE TEXTURE */
   body::before {
     content: '';
@@ -43,14 +43,14 @@
     z-index: -1;
     opacity: 0.4;
   }
-
+ 
   /* LAYOUT */
   .container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 40px;
   }
-
+ 
   /* NAV */
   nav {
     position: fixed;
@@ -66,13 +66,13 @@
     transition: all 0.4s ease;
     background: transparent;
   }
-
+ 
   nav.scrolled {
     background: rgba(12,12,11,0.92);
     backdrop-filter: blur(20px);
     border-bottom-color: var(--border);
   }
-
+ 
   .nav-logo {
     font-family: 'DM Mono', monospace;
     font-size: 12px;
@@ -80,17 +80,17 @@
     color: var(--muted);
     text-transform: uppercase;
   }
-
+ 
   .nav-logo span {
     color: var(--accent);
   }
-
+ 
   .nav-links {
     display: flex;
     gap: 36px;
     list-style: none;
   }
-
+ 
   .nav-links a {
     font-size: 12px;
     font-weight: 600;
@@ -100,9 +100,9 @@
     text-decoration: none;
     transition: color 0.2s;
   }
-
+ 
   .nav-links a:hover { color: var(--accent); }
-
+ 
   /* HERO */
   .hero {
     min-height: 100vh;
@@ -112,7 +112,7 @@
     position: relative;
     overflow: hidden;
   }
-
+ 
   .hero-bg-grid {
     position: absolute;
     inset: 0;
@@ -122,7 +122,7 @@
     background-size: 80px 80px;
     mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
   }
-
+ 
   .hero-line {
     position: absolute;
     top: 0;
@@ -132,7 +132,7 @@
     background: linear-gradient(to bottom, transparent, var(--border) 30%, var(--border) 70%, transparent);
     opacity: 0.5;
   }
-
+ 
   .hero-number {
     position: absolute;
     top: 50%;
@@ -145,13 +145,13 @@
     opacity: 0.4;
     white-space: nowrap;
   }
-
+ 
   .hero-content {
     max-width: 900px;
     position: relative;
     z-index: 1;
   }
-
+ 
   .hero-eyebrow {
     font-family: 'DM Mono', monospace;
     font-size: 11px;
@@ -163,7 +163,7 @@
     align-items: center;
     gap: 16px;
   }
-
+ 
   .hero-eyebrow::before {
     content: '';
     display: block;
@@ -171,7 +171,7 @@
     height: 1px;
     background: var(--accent);
   }
-
+ 
   .hero-title {
     font-family: 'DM Serif Display', serif;
     font-size: clamp(56px, 8vw, 108px);
@@ -181,12 +181,12 @@
     color: var(--white);
     margin-bottom: 16px;
   }
-
+ 
   .hero-title em {
     font-style: italic;
     color: var(--accent);
   }
-
+ 
   .hero-subtitle {
     font-size: 14px;
     font-weight: 400;
@@ -198,24 +198,24 @@
     gap: 20px;
     flex-wrap: wrap;
   }
-
+ 
   .hero-subtitle span {
     display: flex;
     align-items: center;
     gap: 8px;
   }
-
+ 
   .hero-subtitle span::before {
     content: '○';
     color: var(--accent);
     font-size: 8px;
   }
-
+ 
   /* SECTIONS */
   section {
     padding: 100px 0;
   }
-
+ 
   .section-header {
     display: flex;
     align-items: baseline;
@@ -224,14 +224,14 @@
     padding-bottom: 20px;
     border-bottom: 1px solid var(--border);
   }
-
+ 
   .section-num {
     font-family: 'DM Mono', monospace;
     font-size: 11px;
     color: var(--accent);
     letter-spacing: 0.1em;
   }
-
+ 
   .section-title {
     font-family: 'DM Serif Display', serif;
     font-size: 36px;
@@ -239,7 +239,7 @@
     color: var(--white);
     letter-spacing: -0.01em;
   }
-
+ 
   .section-label {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
@@ -248,7 +248,7 @@
     color: var(--muted);
     margin-left: auto;
   }
-
+ 
   /* INTRO */
   .intro-grid {
     display: grid;
@@ -256,7 +256,7 @@
     gap: 80px;
     align-items: start;
   }
-
+ 
   .intro-text p {
     font-size: 17px;
     line-height: 1.75;
@@ -264,18 +264,18 @@
     margin-bottom: 20px;
     font-weight: 400;
   }
-
+ 
   .intro-text p strong {
     color: var(--text);
     font-weight: 600;
   }
-
+ 
   .intro-skills {
     display: flex;
     flex-direction: column;
     gap: 0;
   }
-
+ 
   .skill-row {
     display: flex;
     align-items: center;
@@ -284,20 +284,20 @@
     border-bottom: 1px solid var(--border);
     transition: all 0.2s;
   }
-
+ 
   .skill-row:first-child { border-top: 1px solid var(--border); }
-
+ 
   .skill-row:hover {
     padding-left: 12px;
   }
-
+ 
   .skill-name {
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.05em;
     color: var(--text);
   }
-
+ 
   .skill-tag {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
@@ -307,14 +307,14 @@
     padding: 4px 10px;
     border-radius: 2px;
   }
-
+ 
   /* PROJECTS */
   .projects-list {
     display: flex;
     flex-direction: column;
     gap: 2px;
   }
-
+ 
   .project-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -329,7 +329,7 @@
     position: relative;
     overflow: hidden;
   }
-
+ 
   .project-card::before {
     content: '';
     position: absolute;
@@ -339,21 +339,20 @@
     transition: opacity 0.3s;
     pointer-events: none;
   }
-
+ 
   .project-card:hover {
     border-left-color: var(--accent);
     transform: translateX(4px);
   }
-
+ 
   .project-card:hover::before {
     opacity: 1;
   }
-
+ 
   .project-card.featured {
-    border-left-color: var(--accent);
-    background: linear-gradient(135deg, #161512, var(--surface));
+    background: var(--surface);
   }
-
+ 
   .project-year {
     font-family: 'DM Mono', monospace;
     font-size: 13px;
@@ -361,9 +360,9 @@
     padding-top: 4px;
     letter-spacing: 0.05em;
   }
-
+ 
   .project-main {}
-
+ 
   .project-title {
     font-family: 'DM Serif Display', serif;
     font-size: 22px;
@@ -373,7 +372,7 @@
     letter-spacing: -0.01em;
     line-height: 1.2;
   }
-
+ 
   .project-director {
     font-size: 12px;
     color: var(--muted);
@@ -381,7 +380,7 @@
     font-family: 'DM Mono', monospace;
     letter-spacing: 0.05em;
   }
-
+ 
   .project-role {
     display: inline-block;
     font-size: 11px;
@@ -393,14 +392,14 @@
     padding: 4px 10px;
     margin-bottom: 12px;
   }
-
+ 
   .project-desc {
     font-size: 13px;
     color: var(--muted);
     line-height: 1.6;
     max-width: 540px;
   }
-
+ 
   .project-meta {
     display: flex;
     flex-direction: column;
@@ -408,7 +407,7 @@
     gap: 8px;
     min-width: 160px;
   }
-
+ 
   .project-format {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
@@ -418,7 +417,7 @@
     order: -1;
     margin-bottom: 4px;
   }
-
+ 
   .badge {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
@@ -434,23 +433,23 @@
     display: inline-block;
     transition: background 0.2s, color 0.2s;
   }
-
+ 
   a.badge:hover {
     background: rgba(200,169,110,0.28);
     color: var(--white);
   }
-
+ 
   a.badge, .project-link {
     position: relative;
     z-index: 2;
   }
-
+ 
   .badge-gold { }
   .badge-white { }
   .badge-red { }
-
-
-
+ 
+ 
+ 
   /* LINKS a progetti */
   .project-link {
     display: inline-flex;
@@ -465,17 +464,17 @@
     margin-top: 10px;
     transition: color 0.2s;
   }
-
+ 
   .project-link:hover { color: var(--accent); }
   .project-link::after { content: ' →'; }
-
+ 
   /* CONTACTS */
   .contact-section {
     background: var(--surface);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
   }
-
+ 
   .contact-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -483,7 +482,7 @@
     align-items: center;
     padding: 80px 0;
   }
-
+ 
   .contact-headline {
     font-family: 'DM Serif Display', serif;
     font-size: clamp(32px, 4vw, 52px);
@@ -491,24 +490,24 @@
     line-height: 1.1;
     letter-spacing: -0.02em;
   }
-
+ 
   .contact-headline em {
     font-style: italic;
     color: var(--accent);
   }
-
+ 
   .contact-details {
     display: flex;
     flex-direction: column;
     gap: 24px;
   }
-
+ 
   .contact-item {
     display: flex;
     flex-direction: column;
     gap: 4px;
   }
-
+ 
   .contact-label {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
@@ -516,52 +515,52 @@
     text-transform: uppercase;
     color: var(--muted);
   }
-
+ 
   .contact-value {
     font-size: 15px;
     color: var(--text);
     font-weight: 600;
   }
-
+ 
   .contact-link {
     text-decoration: none;
     transition: color 0.2s;
   }
-
+ 
   .contact-link:hover {
     color: var(--accent);
   }
-
+ 
   /* FOOTER */
   footer {
     padding: 40px 0;
   }
-
+ 
   .footer-inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-
+ 
   .footer-copy {
     font-family: 'DM Mono', monospace;
     font-size: 11px;
     color: var(--muted);
     letter-spacing: 0.1em;
   }
-
+ 
   /* ANIMATE IN */
   .fade-up {
     opacity: 0;
     transform: translateY(24px);
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
-
+ 
   .fade-up.visible {
     opacity: 1;
     transform: translateY(0);
   }
-
+ 
   /* DIVIDER */
   .divider {
     width: 100%;
@@ -569,12 +568,28 @@
     background: linear-gradient(to right, transparent, var(--border), transparent);
     margin: 0;
   }
-
-  /* SCROLLBAR */
+ 
+  #lang-toggle {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 2px;
+  }
+ 
+  #lang-toggle:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); }
-
+ 
   @media (max-width: 768px) {
     .container { padding: 0 24px; }
     nav { padding: 20px 24px; }
@@ -582,10 +597,12 @@
     .intro-grid { grid-template-columns: 1fr; gap: 48px; }
     .project-card {
       grid-template-columns: 48px 1fr;
+      grid-template-rows: auto auto;
       gap: 16px;
     }
     .project-meta {
-      grid-column: 1 / -1;
+      grid-column: 2 / -1;
+      grid-row: 2;
       flex-direction: row;
       flex-wrap: wrap;
       align-items: flex-start;
@@ -609,69 +626,29 @@
     .contact-inner { grid-template-columns: 1fr; gap: 40px; }
     .nav-links { display: none; }
   }
-
-  /* LANG SWITCHER */
-  .lang-switcher {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-  }
-
-  .lang-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px 8px;
-    border-radius: 2px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-    transition: color 0.2s, background 0.2s;
-    text-transform: uppercase;
-  }
-
-  .lang-btn.active {
-    color: var(--accent);
-    background: var(--accent-dim);
-  }
-
-  .lang-btn:hover:not(.active) {
-    color: var(--text);
-  }
-
-  .lang-sep {
-    color: var(--border);
-    font-size: 10px;
-  }
+ 
+ 
 </style>
 </head>
 <body>
-
+ 
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-logo">JP<span>·</span>Portfolio</div>
   <ul class="nav-links">
-    <li><a href="#about" data-it="Profilo" data-en="About">Profilo</a></li>
-    <li><a href="#projects" data-it="Progetti" data-en="Projects">Progetti</a></li>
-    <li><a href="#contact" data-it="Contatti" data-en="Contact">Contatti</a></li>
+    <li><a href="#about" data-i18n="nav_about">Profilo</a></li>
+    <li><a href="#projects" data-i18n="nav_projects">Progetti</a></li>
+    <li><a href="#contact" data-i18n="nav_contact">Contatti</a></li>
+    <li><button id="lang-toggle" onclick="toggleLang()">ENG</button></li>
   </ul>
-  <div class="lang-switcher">
-    <button class="lang-btn active" id="btn-it" onclick="setLang('it')">IT</button>
-    <span class="lang-sep">|</span>
-    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
-  </div>
 </nav>
-
+ 
 <!-- HERO -->
 <header class="hero">
   <div class="hero-bg-grid"></div>
   <div class="hero-line"></div>
   <div class="hero-number">Video · Sound · Production — Roma, 2026</div>
-
+ 
   <div class="hero-content">
     <div class="hero-eyebrow">Video Editor &amp; Operatore di Presa Diretta</div>
     <h1 class="hero-title">
@@ -684,7 +661,7 @@
     </div>
   </div>
 </header>
-
+ 
 <!-- ABOUT -->
 <section id="about">
   <div class="container">
@@ -734,9 +711,9 @@
     </div>
   </div>
 </section>
-
+ 
 <div class="divider"></div>
-
+ 
 <!-- PROJECTS -->
 <section id="projects">
   <div class="container">
@@ -745,9 +722,9 @@
       <h2 class="section-title">Progetti</h2>
       <span class="section-label">2023 – 2025</span>
     </div>
-
+ 
     <div class="projects-list">
-
+ 
       <!-- David di Donatello -->
       <div class="project-card featured fade-up">
         <div class="project-year">2025</div>
@@ -765,7 +742,7 @@
           <span class="project-format">Cortometraggio</span>
         </div>
       </div>
-
+ 
       <!-- Lo so -->
       <div class="project-card fade-up">
         <div class="project-year">2025</div>
@@ -784,7 +761,7 @@
           <span class="project-format">Cortometraggio</span>
         </div>
       </div>
-
+ 
       <!-- Cinque Giorni -->
       <div class="project-card fade-up">
         <div class="project-year">2024</div>
@@ -803,7 +780,7 @@
           <span class="project-format">Cortometraggio</span>
         </div>
       </div>
-
+ 
       <!-- Griffith -->
       <div class="project-card fade-up">
         <div class="project-year">2024–25</div>
@@ -820,7 +797,7 @@
           <span class="project-format">Cortometraggi Accademici</span>
         </div>
       </div>
-
+ 
       <!-- Break Point Netflix -->
       <div class="project-card fade-up">
         <div class="project-year">2023</div>
@@ -839,7 +816,7 @@
           <span class="project-format">Serie Televisiva</span>
         </div>
       </div>
-
+ 
       <!-- Guercino -->
       <div class="project-card fade-up">
         <div class="project-year">2023</div>
@@ -857,7 +834,7 @@
           <span class="project-format">Documentario</span>
         </div>
       </div>
-
+ 
       <!-- Quel dolore -->
       <div class="project-card fade-up">
         <div class="project-year">2023</div>
@@ -876,7 +853,7 @@
           <span class="project-format">Documentario</span>
         </div>
       </div>
-
+ 
       <!-- Le Biblioteche -->
       <div class="project-card fade-up">
         <div class="project-year">2023</div>
@@ -895,13 +872,13 @@
           <span class="project-format">Documentario</span>
         </div>
       </div>
-
+ 
     </div>
   </div>
 </section>
-
+ 
 <div class="divider"></div>
-
+ 
 <!-- CONTACT -->
 <section id="contact" class="contact-section">
   <div class="container">
@@ -924,12 +901,12 @@
           <span class="contact-label">Telefono</span>
           <a class="contact-value contact-link" href="tel:+393278523563">+39 327 852 3563</a>
         </div>
-
+ 
       </div>
     </div>
   </div>
 </section>
-
+ 
 <!-- FOOTER -->
 <footer>
   <div class="container">
@@ -939,14 +916,14 @@
     </div>
   </div>
 </footer>
-
+ 
 <script>
   // NAV scroll
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
   });
-
+ 
   // Fade up on scroll
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
@@ -958,12 +935,136 @@
       }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
+ 
   document.querySelectorAll('.fade-up').forEach((el, i) => {
     el.dataset.delay = i % 4;
     observer.observe(el);
   });
+ 
+  // ── TRADUZIONE ITA / ENG ──────────────────────────────────────────────
+  const translations = {
+    it: {
+      nav_about: 'Profilo',
+      nav_projects: 'Progetti',
+      nav_contact: 'Contatti',
+      hero_eyebrow: 'Video Editor &amp; Operatore di Presa Diretta',
+      hero_sub_1: 'Roma',
+      hero_sub_2: 'Cinema &amp; Documentario',
+      hero_sub_3: 'Suono · Montaggio · Produzione',
+      section_about_title: 'Profilo',
+      section_about_label: 'Chi sono',
+      section_projects_label: '2023 – 2025',
+      about_p1: 'Lavoro nella produzione video da diversi anni, intrecciando <strong>immagine, suono e racconto</strong>. Il mio percorso si è sviluppato nel cinema indipendente e nel documentario — contesti in cui ho imparato a lavorare con metodo su materiali eterogenei, a rispettare i ritmi editoriali e a costruire contenuti pensati per chi li guarderà.',
+      about_p2: 'Ho ricoperto ruoli distinti lungo tutta la filiera: fonico di presa diretta, assistente al montaggio, ricercatore d\'archivio, assistente di produzione. Su ogni set porto lo stesso approccio — la convinzione che la tecnica serva la storia, e che una storia vada capita prima di essere raccontata.',
+      about_p3: 'Nel 2023 ho lavorato con <strong>Box to Box Films</strong> — la casa produttrice di <em>Formula 1: Drive to Survive</em> — durante le riprese romane di <em>Break Point</em> per Netflix. Un\'esperienza che mi ha messo a contatto diretto con i ritmi del documentario sportivo internazionale.',
+      skill_1: 'Fonico di Presa Diretta',
+      skill_2: 'Montaggio Video',
+      skill_3: 'Assistente di Produzione',
+      skill_4: 'Ricerca d\'Archivio',
+      skill_5: 'Acquisizione Diritti Musicali',
+      skill_6: 'Cortometraggio · Documentario · Serie',
+      contact_headline: 'Disponibile a<br><em>nuove collaborazioni</em>',
+      contact_city_label: 'Città',
+      contact_city_value: 'Roma, Italia',
+      contact_email_label: 'Email',
+      contact_phone_label: 'Telefono',
+      contact_avail_label: 'Disponibilità',
+      contact_avail_value: 'Candidatura spontanea aperta',
+      footer_right: 'Roma · Cinema · Documentario',
+    },
+    en: {
+      nav_about: 'About',
+      nav_projects: 'Projects',
+      nav_contact: 'Contact',
+      hero_eyebrow: 'Video Editor &amp; Sound Recordist',
+      hero_sub_1: 'Rome',
+      hero_sub_2: 'Cinema &amp; Documentary',
+      hero_sub_3: 'Sound · Editing · Production',
+      section_about_title: 'About',
+      section_about_label: 'Who I am',
+      section_projects_label: '2023 – 2025',
+      about_p1: 'I have been working in video production for several years, weaving together <strong>image, sound and storytelling</strong>. My career has developed in independent cinema and documentary — contexts where I learned to work methodically with diverse materials, meet editorial deadlines and build content with the audience in mind.',
+      about_p2: 'I have taken on distinct roles across the entire production pipeline: sound recordist, editing assistant, archive researcher, production assistant. On every set I bring the same approach — the conviction that technique serves the story, and that a story must be understood before it can be told.',
+      about_p3: 'In 2023 I worked with <strong>Box to Box Films</strong> — the production company behind <em>Formula 1: Drive to Survive</em> — during the Rome shoot of <em>Break Point</em> for Netflix. An experience that brought me into direct contact with the pace of international sports documentary production.',
+      skill_1: 'Sound Recordist',
+      skill_2: 'Video Editing',
+      skill_3: 'Production Assistant',
+      skill_4: 'Archive Research',
+      skill_5: 'Music Rights Clearance',
+      skill_6: 'Short Film · Documentary · Series',
+      contact_headline: 'Available for<br><em>new collaborations</em>',
+      contact_city_label: 'City',
+      contact_city_value: 'Rome, Italy',
+      contact_email_label: 'Email',
+      contact_phone_label: 'Phone',
+      contact_avail_label: 'Availability',
+      contact_avail_value: 'Open to spontaneous applications',
+      footer_right: 'Rome · Cinema · Documentary',
+    }
+  };
+ 
+  let currentLang = 'it';
+ 
+  function toggleLang() {
+    currentLang = currentLang === 'it' ? 'en' : 'it';
+    applyLang(currentLang);
+    document.getElementById('lang-toggle').textContent = currentLang === 'it' ? 'ENG' : 'ITA';
+    document.documentElement.lang = currentLang;
+  }
+ 
+  function applyLang(lang) {
+    const t = translations[lang];
+ 
+    // Nav
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+ 
+    // Hero
+    document.querySelector('.hero-eyebrow').innerHTML = t.hero_eyebrow;
+    const heroSpans = document.querySelectorAll('.hero-subtitle span');
+    if (heroSpans[0]) heroSpans[0].innerHTML = t.hero_sub_1;
+    if (heroSpans[1]) heroSpans[1].innerHTML = t.hero_sub_2;
+    if (heroSpans[2]) heroSpans[2].innerHTML = t.hero_sub_3;
+ 
+    // About section
+    document.querySelector('#about .section-title').textContent = t.section_about_title;
+    document.querySelector('#about .section-label').textContent = t.section_about_label;
+ 
+    // Projects section label
+    document.querySelector('#projects .section-label').textContent = t.section_projects_label;
+ 
+    // About paragraphs
+    const aboutPs = document.querySelectorAll('.intro-text p');
+    if (aboutPs[0]) aboutPs[0].innerHTML = t.about_p1;
+    if (aboutPs[1]) aboutPs[1].innerHTML = t.about_p2;
+    if (aboutPs[2]) aboutPs[2].innerHTML = t.about_p3;
+ 
+    // Skills
+    const skillNames = document.querySelectorAll('.skill-name');
+    const skillKeys = ['skill_1','skill_2','skill_3','skill_4','skill_5','skill_6'];
+    skillNames.forEach((el, i) => { if (skillKeys[i]) el.textContent = t[skillKeys[i]]; });
+ 
+    // Contact
+    document.querySelector('.contact-headline').innerHTML = t.contact_headline;
+    const contactItems = document.querySelectorAll('.contact-item');
+    if (contactItems[0]) {
+      contactItems[0].querySelector('.contact-label').textContent = t.contact_city_label;
+      contactItems[0].querySelector('.contact-value').textContent = t.contact_city_value;
+    }
+    if (contactItems[1]) contactItems[1].querySelector('.contact-label').textContent = t.contact_email_label;
+    if (contactItems[2]) contactItems[2].querySelector('.contact-label').textContent = t.contact_phone_label;
+    if (contactItems[3]) {
+      contactItems[3].querySelector('.contact-label').textContent = t.contact_avail_label;
+      contactItems[3].querySelector('.contact-value').textContent = t.contact_avail_value;
+    }
+ 
+    // Footer
+    const footerSpans = document.querySelectorAll('.footer-copy');
+    if (footerSpans[1]) footerSpans[1].textContent = t.footer_right;
+  }
 </script>
-
+ 
 </body>
 </html>
